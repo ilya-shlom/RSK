@@ -28,6 +28,10 @@ public:
 
     Permutation &inverse();
 
+    void Rebuild(int *uw); // Перезапись значений перестановки
+
+    void Shuffle(); // Перемешивание значений перестановки
+
     void Show();
 
     int power() const { return N; }
@@ -68,6 +72,21 @@ Permutation &Permutation::complement() {
     return *this;
 }
 
+void Permutation::Rebuild(int *uw) {
+    memcpy(W, uw, sizeof(int) * N);
+}
+
+void Permutation::Shuffle() {
+    int *mas;
+    mas = new int[N];
+
+    for (int i = 0; i < N; i++) {
+        mas[i] = i + 1;
+    }
+    shuffle_array(mas, N);
+    memcpy(W, mas, sizeof(int) * N);
+}
+
 void Permutation::Show() {
     cout << "W = { ";
     for (int i = 0; i < N; i++) {
@@ -77,14 +96,7 @@ void Permutation::Show() {
 }
 
 Permutation::Permutation(int n) : W(new int[n]), N(n) {
-    int *mas;
-    mas = new int[N];
-
-    for (int i = 0; i < N; i++) {
-        mas[i] = i + 1;
-    }
-    shuffle_array(mas, N);
-    memcpy(W, mas, sizeof(int) * N);
+    Shuffle();
 }
 
 Permutation::Permutation(int n, int *uw) : W(new int[n]), N(n) {
