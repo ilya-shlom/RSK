@@ -8,15 +8,7 @@ int *ithPermutation(const int n, int i); // генерация n-ой перес
 
 int main() {
     int n = 5; // Мощность перестановок
-
-    // Создание всех перестановок мощности n
-    int pAmount = static_cast<int>(tgamma(n+1));
-    int **mas;
-    mas = new int*[pAmount];
-    for (int i = 0; i < pAmount; i++) {
-        mas[i] = new int[n];
-        memcpy(mas[i], ithPermutation(n, i), sizeof(int)*n);
-    }
+    int pAmount = static_cast<int>(tgamma(n+1)); // кол-во перестановок множества n
 
     Permutation A(n);
     Tableaux T(A);
@@ -29,7 +21,7 @@ int main() {
 
     cout << "Processing all permutations of power " << n << endl;
     for (int i = 0; i < pAmount; i++) {
-        A.Rebuild(mas[i]);
+        A.Rebuild(ithPermutation(n, i));
         A.Show();
         A.reverse().complement();
         T.Rebuild(A);
