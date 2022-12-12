@@ -21,6 +21,7 @@ public:
 
     int insert_one_P(int str_num, int num);
 
+    void Rebuild(const Permutation& w);
 //    void lambda(); // Вывод множества λ
 
     explicit Tableaux(const Permutation& w); // Конструктор таблицы алгоритмом Шенстеда
@@ -42,7 +43,7 @@ Tableaux::Tableaux(const Permutation& w) : L(0), N(w.N), Ln(new int[w.N]), P(new
     for (int i = 0; i < N; i++) {
         Ln[i] = 0;
     }
-    for (int i = 0; i < L; i++) {
+    for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             P[i][j] = 0;
             Q[i][j] = 0;
@@ -77,6 +78,24 @@ int Tableaux::insert_one_P(int str_num, int num) {
     return 1;
 }
 
+void Tableaux::Rebuild(const Permutation &w) {
+    L = 0;
+    c = 0;
+    for (int i = 0; i < N; i++) {
+        Ln[i] = 0;
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            P[i][j] = 0;
+            Q[i][j] = 0;
+        }
+    }
+    for (int i = 0; i < w.N; i++) {
+        insert_one_P(0, w.W[i]);
+    }
+}
+
+
 void Tableaux::Show() {
     cout << "Insertion table (P):\n";
     for (int i = 0; i < L; i++) {
@@ -97,4 +116,5 @@ void Tableaux::Show() {
         }
         cout << endl;
     }
+    cout << endl;
 }
