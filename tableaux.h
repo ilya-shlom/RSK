@@ -21,6 +21,10 @@ public:
 
     int insert_one_P(int str_num, int num);
 
+    string PToString();
+
+    string QToString();
+
     void Rebuild(const Permutation& w);
 //    void lambda(); // Вывод множества λ
 
@@ -117,4 +121,30 @@ void Tableaux::Show() {
         cout << endl;
     }
     cout << endl;
+}
+
+string Tableaux::PToString() {
+    string result;
+
+    for (int i = 0; P[i][0] != 0; i++) {
+        for (int j = 0; P[i][j] != 0; j++) {
+            result.push_back(static_cast <char>(P[i][j]));
+        }
+        result += 'n';
+    }
+
+    return result;
+}
+
+string Tableaux::QToString() {
+    string result;
+
+    for (int i = 0; Q[i][0] != 0; i++) {
+        for (int j = 0; Q[i][j] != 0; j++) {
+            result.push_back(static_cast <char>(Q[i][j]));
+        }
+        result += 'n';
+    }
+
+    return result;
 }

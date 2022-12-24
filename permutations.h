@@ -36,6 +36,8 @@ public:
 
     int power() const { return N; }
 
+    string ToString();
+
     Permutation(int n, int *uw); // Пользовательская перестановка
     explicit Permutation(int n); // Генерация перестановки длины n
     ~Permutation() { delete[] W; }
@@ -101,4 +103,16 @@ Permutation::Permutation(int n) : W(new int[n]), N(n) {
 
 Permutation::Permutation(int n, int *uw) : W(new int[n]), N(n) {
     memcpy(W, uw, sizeof(int) * N);
+}
+
+string Permutation::ToString() {
+    string result("");
+
+    for (int i = 0; i < N; i++) {
+        char c = W[i];
+        result.append(1, c);
+        result.push_back(',');
+    }
+
+    return result;
 }

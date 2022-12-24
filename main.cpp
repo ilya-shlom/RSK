@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <fstream>
 #include "tableaux.h"
 
 using namespace std;
@@ -7,11 +8,15 @@ using namespace std;
 int *ithPermutation(const int n, int i); // генерация n-ой перестановки
 
 int main() {
-    int n = 5; // Мощность перестановок
+    int n = 4; // Мощность перестановок
     int pAmount = static_cast<int>(tgamma(n+1)); // кол-во перестановок множества n
+    ofstream results("results_3.csv");
+
+    results << "W;W^(rc);P;Q;\n";
 
     Permutation A(n);
     Tableaux T(A);
+
 
 //    cout << "Random permutation: \n";
 //    A.Show();
@@ -21,15 +26,23 @@ int main() {
 
     cout << "Processing all permutations of power " << n << endl;
     for (int i = 0; i < pAmount; i++) {
+//        cout << "Permutation " << i << endl;
+        cout << A.ToString() << endl;
+        results << A.ToString() << ';';
         A.Rebuild(ithPermutation(n, i));
-        A.Show();
+        results << A.ToString() << ';';
+//        A.Show();
+//        T.Show();
         A.reverse().complement();
         T.Rebuild(A);
-        A.Show();
-        T.Show();
+//        A.Show();
+//        T.Show();
+        cout << T.PToString();
+        results << T.PToString() << ';';
+        results << T.QToString() << ';' << '\n';
     }
 
-
+    results.close();
 
     return 0;
 }
