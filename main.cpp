@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int *ithPermutation(const int n, int i); // генерация n-ой перестановки
+int *ithPermutation(int n, int i); // генерация n-ой перестановки
 
 int main() {
     int n = 4; // Мощность перестановок
@@ -23,31 +23,31 @@ int main() {
 //    A.reverse().complement();
 //    A.Show();
 //    T.Show();
-
-    cout << "Processing all permutations of power " << n << endl;
-    for (int i = 0; i < pAmount; i++) {
-//        cout << "Permutation " << i << endl;
-        cout << A.ToString() << endl;
-        results << A.ToString() << ';';
-        A.Rebuild(ithPermutation(n, i));
-        results << A.ToString() << ';';
-//        A.Show();
-//        T.Show();
-        A.reverse().complement();
-        T.Rebuild(A);
-//        A.Show();
-//        T.Show();
-        cout << T.PToString();
-        results << T.PToString() << ';';
-        results << T.QToString() << ';' << '\n';
-    }
+    cout << A.ToString();
+//    cout << "Processing all permutations of power " << n << endl;
+//    for (int i = 0; i < pAmount; i++) {
+////        cout << "Permutation " << i << endl;
+//        cout << A.ToString() << endl;
+//        results << A.ToString() << ';';
+//        A.Rebuild(ithPermutation(n, i));
+//        results << A.ToString() << ';';
+////        A.Show();
+////        T.Show();
+//        A.reverse().complement();
+//        T.Rebuild(A);
+////        A.Show();
+////        T.Show();
+//        cout << T.PToString();
+//        results << T.PToString() << ';';
+//        results << T.QToString() << ';' << '\n';
+//    }
 
     results.close();
 
     return 0;
 }
 
-int *ithPermutation(const int n, int i)
+int *ithPermutation(int n, int i)
 {
     int j, k = 0;
     int *fact = new int[n];

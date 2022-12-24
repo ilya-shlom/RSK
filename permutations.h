@@ -109,9 +109,8 @@ string Permutation::ToString() {
     string result("");
 
     for (int i = 0; i < N; i++) {
-        char c = W[i];
-        result.append(1, c);
-        result.push_back(',');
+        string s = to_string(W[i]);
+        result += s;
     }
 
     return result;

@@ -128,7 +128,8 @@ string Tableaux::PToString() {
 
     for (int i = 0; P[i][0] != 0; i++) {
         for (int j = 0; P[i][j] != 0; j++) {
-            result.push_back(static_cast <char>(P[i][j]));
+            string s = to_string(Q[i][j]);
+            result += s;
         }
         result += 'n';
     }
@@ -141,7 +142,8 @@ string Tableaux::QToString() {
 
     for (int i = 0; Q[i][0] != 0; i++) {
         for (int j = 0; Q[i][j] != 0; j++) {
-            result.push_back(static_cast <char>(Q[i][j]));
+            string s = to_string(Q[i][j]);
+            result += s;
         }
         result += 'n';
     }
