@@ -126,10 +126,11 @@ void Tableaux::Show() {
 string Tableaux::PToString() {
     string result;
 
-    for (int i = 0; P[i][0] != 0; i++) {
-        for (int j = 0; P[i][j] != 0; j++) {
-            string s = to_string(Q[i][j]);
+    for (int i = 0; (i < N) && (P[i][0] != 0); i++) {
+        for (int j = 0; (j < N) && (P[i][j] != 0); j++) {
+            string s = to_string(P[i][j]);
             result += s;
+            result += ',';
         }
         result += 'n';
     }
@@ -140,10 +141,11 @@ string Tableaux::PToString() {
 string Tableaux::QToString() {
     string result;
 
-    for (int i = 0; Q[i][0] != 0; i++) {
-        for (int j = 0; Q[i][j] != 0; j++) {
+    for (int i = 0; (i < N) && (Q[i][0] != 0); i++) {
+        for (int j = 0; (j < N) && (Q[i][j] != 0); j++) {
             string s = to_string(Q[i][j]);
             result += s;
+            result += ',';
         }
         result += 'n';
     }

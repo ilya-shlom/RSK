@@ -49,7 +49,7 @@ Permutation &Permutation::reverse() {
     for (int i = 0; i < N; i++) {
         W[i] = temp.W[N - i - 1];
     }
-    cout << "W^(r)\n";
+//    cout << "W^(r)\n";
 
     return *this;
 }
@@ -60,7 +60,7 @@ Permutation &Permutation::inverse() {
     for (int i = 0; i < N; i++) {
         W[temp.W[temp.W[i] - 1] - 1] = temp.W[i];
     }
-    cout << "W^(-1)\n";
+//    cout << "W^(-1)\n";
 
     return *this;
 }
@@ -69,7 +69,7 @@ Permutation &Permutation::complement() {
     for (int i = 0; i < N; i++) {
         W[i] = N + 1 - W[i];
     }
-    cout << "W^(c)\n";
+//    cout << "W^(c)\n";
 
     return *this;
 }
@@ -111,6 +111,7 @@ string Permutation::ToString() {
     for (int i = 0; i < N; i++) {
         string s = to_string(W[i]);
         result += s;
+        result += ',';
     }
 
     return result;

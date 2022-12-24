@@ -8,9 +8,9 @@ using namespace std;
 int *ithPermutation(int n, int i); // генерация n-ой перестановки
 
 int main() {
-    int n = 4; // Мощность перестановок
+    int n = 10; // Мощность перестановок
     int pAmount = static_cast<int>(tgamma(n+1)); // кол-во перестановок множества n
-    ofstream results("results_3.csv");
+    ofstream results("results_10.csv");
 
     results << "W;W^(rc);P;Q;\n";
 
@@ -23,24 +23,24 @@ int main() {
 //    A.reverse().complement();
 //    A.Show();
 //    T.Show();
-    cout << A.ToString();
-//    cout << "Processing all permutations of power " << n << endl;
-//    for (int i = 0; i < pAmount; i++) {
-////        cout << "Permutation " << i << endl;
-//        cout << A.ToString() << endl;
-//        results << A.ToString() << ';';
-//        A.Rebuild(ithPermutation(n, i));
-//        results << A.ToString() << ';';
-////        A.Show();
-////        T.Show();
-//        A.reverse().complement();
-//        T.Rebuild(A);
-////        A.Show();
-////        T.Show();
-//        cout << T.PToString();
-//        results << T.PToString() << ';';
-//        results << T.QToString() << ';' << '\n';
-//    }
+//    cout << A.ToString();
+    cout << "Processing all permutations of power " << n << endl;
+    for (int i = 0; i < pAmount; i++) {
+//        cout << "Permutation " << i << endl;
+        A.Rebuild(ithPermutation(n, i));
+        results << A.ToString() << ';';
+//        A.Show();
+//        T.Show();
+        A.reverse().complement();
+        results << A.ToString() << ';';
+        T.Rebuild(A);
+//        A.Show();
+//        T.Show();
+//        cout << T.PToString() << endl;
+//        cout << T.QToString() << endl;
+        results << T.PToString() << ';';
+        results << T.QToString() << ';' << '\n';
+    }
 
     results.close();
 
