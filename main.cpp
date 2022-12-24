@@ -37,8 +37,8 @@ int main() {
 int *ithPermutation(const int n, int i)
 {
     int j, k = 0;
-    int *fact = (int *)calloc(n, sizeof(int));
-    int *perm = (int *)calloc(n, sizeof(int));
+    int *fact = new int[n];
+    int *perm = new int[n];
 
     // compute factorial numbers
     fact[k] = 1;
@@ -58,7 +58,8 @@ int *ithPermutation(const int n, int i)
         for (j = k - 1; j >= 0; --j)
             if (perm[j] <= perm[k])
                 perm[k]++;
-    free(fact);
+
+    delete [] fact;
 
     return perm;
 }
