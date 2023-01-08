@@ -8,41 +8,46 @@ using namespace std;
 int *ithPermutation(int n, int i); // генерация n-ой перестановки
 
 int main() {
-    int n = 10; // Мощность перестановок
-    int pAmount = static_cast<int>(tgamma(n+1)); // кол-во перестановок множества n
-    ofstream results("results_10.csv");
+    for (int n = 1; n <= 11; n++) {
+        int pAmount = static_cast<int>(tgamma(n+1)); // кол-во перестановок множества n
+        string filename = "results_simil_Q_" + to_string(n) + ".csv";
+        ofstream results(filename);
 
-    results << "W;W^(rc);P;Q;\n";
+        results << "W;W^(rc);Q;\n";
 
-    Permutation A(n);
-    Tableaux T(A);
+        Permutation A(n), B(n);
+        Tableaux T1(A), T2(A);
 
 
-//    cout << "Random permutation: \n";
-//    A.Show();
-//    A.reverse().complement();
-//    A.Show();
-//    T.Show();
-//    cout << A.ToString();
-    cout << "Processing all permutations of power " << n << endl;
-    for (int i = 0; i < pAmount; i++) {
-//        cout << "Permutation " << i << endl;
-        A.Rebuild(ithPermutation(n, i));
-        results << A.ToString() << ';';
-//        A.Show();
-//        T.Show();
-        A.reverse().complement();
-        results << A.ToString() << ';';
-        T.Rebuild(A);
-//        A.Show();
-//        T.Show();
-//        cout << T.PToString() << endl;
-//        cout << T.QToString() << endl;
-        results << T.PToString() << ';';
-        results << T.QToString() << ';' << '\n';
+    //    cout << "Random permutation: \n";
+    //    A.Show();
+    //    A.reverse().complement();
+    //    A.Show();
+    //    T.Show();
+    //    cout << A.ToString();
+    int mas[5] = {1, 4, 3, 5, 2};
+        cout << "Processing all permutations of power " << n << endl;
+        for (int i = 0; i < pAmount; i++) {
+    //        cout << i << endl;
+    //        cout << "Permutation " << i << endl;
+            A.Rebuild(mas);
+            T1.Rebuild(A);
+            T1.Show();
+//            B.Rebuild(ithPermutation(n, i));
+            A.reverse().complement();
+            T1.Rebuild(A);
+            T1.Show();
+            T2.Rebuild(B);
+            if(T1.QToString() == T2.QToString()) {
+                T1.Show();
+                results << A.ToString() << ';';
+                results << B.ToString() << ';';
+                results << T2.QToString() << ';' << '\n';
+            }
+        }
+
+        results.close();
     }
-
-    results.close();
 
     return 0;
 }
